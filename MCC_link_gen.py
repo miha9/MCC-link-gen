@@ -1,3 +1,5 @@
+# Install Python 3.0, pip for python and the ccxt lib (recomended CMD --> pip install ccxt) the lib might also require the requests lib.
+
 import ccxt
 import operator
 
