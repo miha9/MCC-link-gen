@@ -14,23 +14,40 @@ import operator
 # Change this number to the number of charts you want to load
 n_coins = 20
 
+# This determines if the second link shows the biggest 24h pump or biggest dump;
+# Change this to False to get the coins with the biggest 24h dump
+pump = True
 
 ################################################################################################
 bina = ccxt.binance()
-markets_dic = {}
+markets_vol_dic = {}
+markets_percent_dic = {}
 tickers = bina.fetch_tickers()
-link = "https://www.multicoincharts.com/"
+link_vol = "https://www.multicoincharts.com/"
+link_percentage = "https://www.multicoincharts.com/"
 for ticker in tickers:
     if ticker.find("/BTC") != -1:
-        #print(ticker, tickers[ticker]["quoteVolume"])
-        markets_dic[ticker] = tickers[ticker]["quoteVolume"]
-sorted_markets = sorted(markets_dic.items(),  key= operator.itemgetter(1), reverse=True)
+        #print(ticker, tickers[ticker]["percentage"])
+        markets_vol_dic[ticker] = tickers[ticker]["quoteVolume"]
+        markets_percent_dic[ticker] = tickers[ticker]["percentage"]
+sorted_markets_vol = sorted(markets_vol_dic.items(), key= operator.itemgetter(1), reverse=True)
+sorted_markets_percentage = sorted(markets_percent_dic.items(), key= operator.itemgetter(1), reverse=pump)
 for market in range(n_coins):
     #print(sorted_markets[market][0])
-    temp_str = (sorted_markets[market][0]).replace("/", "")
+    temp_str_vol = (sorted_markets_vol[market][0]).replace("/", "")
+    temp_str_percentage = (sorted_markets_percentage[market][0]).replace("/", "")
     if market == 0:
-        link = link + "?chart=BINANCE:" + temp_str
+        link_vol = link_vol + "?chart=BINANCE:" + temp_str_vol
+        link_percentage = link_percentage + "?chart=BINANCE:" + temp_str_percentage
     else:
-        link = link + "&chart=BINANCE:" + temp_str
+        link_vol = link_vol + "&chart=BINANCE:" + temp_str_vol
+        link_percentage = link_percentage + "&chart=BINANCE:" + temp_str_percentage
 
-print(link)
+print("Highest volume coins:")
+print(link_vol)
+print("")
+if pump is True:
+    print("Biggest 24h pump:")
+else:
+    print("Biggest 24h dump:")
+print(link_percentage)
