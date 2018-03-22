@@ -1,9 +1,21 @@
-# Install Python 3.0, pip for python and the ccxt lib (recomended CMD --> pip install ccxt) the lib might also require the requests lib.
+# This script provides the link to MCC for the top volume coins on Binance. No need to enter the markets manually anymore!
+
+# 2 ways to get it running:
+# Easy way: Go to https://repl.it, select Python3, copy the code below and click Run
+# Pro way: Install Python 3.0, pip for python and the ccxt lib (recomended CMD --> pip install ccxt) the lib might also require the requests lib.
+
+# If you feel like donating, give your money to the guys that created https://www.multicoincharts.com/
+
+########################################### COPY FROM HERE TO THE END ###################################################
 
 import ccxt
 import operator
 
+# Change this number to the number of charts you want to load
 n_coins = 20
+
+
+################################################################################################
 bina = ccxt.binance()
 markets_dic = {}
 tickers = bina.fetch_tickers()
