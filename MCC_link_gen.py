@@ -4,7 +4,7 @@
 # Easy way: Go to https://repl.it, select Python3, copy the code below and click Run
 # Pro way: Install Python 3.0, pip for python and the ccxt lib (recomended CMD --> pip install ccxt) the lib might also require the requests lib.
 
-# If you feel like donating, give your money to the guys that created https://www.multicoincharts.com/
+# If you feel like donating, tips are appreciated at https://www.multicoincharts.com/
 
 ########################################### COPY FROM HERE TO THE END ###################################################
 
